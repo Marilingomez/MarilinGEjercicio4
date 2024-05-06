@@ -4,8 +4,11 @@
     {
         public List<Persona> Personas { get; set; }
 
+        public Persona? PersonaEnEdicion {  get; set; }
         public PersonasModelo()
         {
+            
+
             Personas = new List<Persona>()
             {
             new Persona { Apellido = "Perez", Nombre = "Juan", Documento = 11111, Telefono = new Telefono { Tipo = Tipo.Casa, CodPais = 54, CodArea = 11, Numero = 3179445 }},
@@ -20,6 +23,39 @@
             new Persona { Apellido = "Alvarez", Nombre = "Gabriela", Documento = 101010, Telefono = new Telefono { Tipo = Tipo.Casa, CodPais = 54, CodArea = 11, Numero = 3104040 }}
 
             };
+        }
+
+        public string Modificar(Persona datosIngresadosPersona)
+        {
+            string error = datosIngresadosPersona.Validar();
+            if(error != null) 
+            {
+               return error;
+            }
+            if(PersonaEnEdicion==null)//estoy dando de alta
+            {
+                foreach(var personaExistente in Personas)
+               {
+                    if (personaExistente.Documento==datosIngresadosPersona.Documento)
+                    {
+                        return "ya existe una persona con el documento";
+                    }
+                }
+
+                Personas.Add(datosIngresadosPersona);
+            }
+            else
+            {
+                if(PersonaEnEdicion.Documento!=datosIngresadosPersona.Documento)
+                {
+                    return "no puede modificar el documento";
+                }
+
+                PersonaEnEdicion.ActualizarCon(datosIngresadosPersona);
+
+                //Personas.Remove(PersonaEnEdicion);
+                //Personas.Add(datosIngresadosPersona);
+            }
         }
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            PersonasList = new ListView();
+            Lista = new ListView();
             DocumentoCol = new ColumnHeader();
             NombreCol = new ColumnHeader();
             ApellidoCol = new ColumnHeader();
@@ -36,12 +36,12 @@
             EliminarBoton = new Button();
             EditarBoton = new Button();
             NuevoBoton = new Button();
-            EdicionText = new GroupBox();
+            EdicionGroup = new GroupBox();
             NumeroText = new TextBox();
             label7 = new Label();
-            PaisText = new TextBox();
+            CodAreaText = new TextBox();
             label6 = new Label();
-            CodPaisText = new TextBox();
+            CodPais = new TextBox();
             label2 = new Label();
             TipoCombo = new ComboBox();
             label5 = new Label();
@@ -53,18 +53,19 @@
             label1 = new Label();
             AceptarBoton = new Button();
             CancelarBoton = new Button();
-            EdicionText.SuspendLayout();
+            EdicionGroup.SuspendLayout();
             SuspendLayout();
             // 
-            // PersonasList
+            // Lista
             // 
-            PersonasList.Columns.AddRange(new ColumnHeader[] { DocumentoCol, NombreCol, ApellidoCol, TelefonoCol });
-            PersonasList.Location = new Point(23, 31);
-            PersonasList.Name = "PersonasList";
-            PersonasList.Size = new Size(718, 121);
-            PersonasList.TabIndex = 0;
-            PersonasList.UseCompatibleStateImageBehavior = false;
-            PersonasList.View = View.Details;
+            Lista.Columns.AddRange(new ColumnHeader[] { DocumentoCol, NombreCol, ApellidoCol, TelefonoCol });
+            Lista.Location = new Point(23, 31);
+            Lista.MultiSelect = false;
+            Lista.Name = "Lista";
+            Lista.Size = new Size(718, 121);
+            Lista.TabIndex = 0;
+            Lista.UseCompatibleStateImageBehavior = false;
+            Lista.View = View.Details;
             // 
             // DocumentoCol
             // 
@@ -94,6 +95,7 @@
             EliminarBoton.TabIndex = 1;
             EliminarBoton.Text = "Eliminar";
             EliminarBoton.UseVisualStyleBackColor = true;
+            EliminarBoton.Click += EliminarBoton_Click;
             // 
             // EditarBoton
             // 
@@ -103,7 +105,7 @@
             EditarBoton.TabIndex = 2;
             EditarBoton.Text = "Editar";
             EditarBoton.UseVisualStyleBackColor = true;
-            EditarBoton.Click += this.EditarBoton_Click_3;
+            EditarBoton.Click += EditarBoton_Click;
             // 
             // NuevoBoton
             // 
@@ -113,29 +115,30 @@
             NuevoBoton.TabIndex = 3;
             NuevoBoton.Text = "Nuevo";
             NuevoBoton.UseVisualStyleBackColor = true;
+            NuevoBoton.Click += NuevoBoton_Click;
             // 
-            // EdicionText
+            // EdicionGroup
             // 
-            EdicionText.Controls.Add(NumeroText);
-            EdicionText.Controls.Add(label7);
-            EdicionText.Controls.Add(PaisText);
-            EdicionText.Controls.Add(label6);
-            EdicionText.Controls.Add(CodPaisText);
-            EdicionText.Controls.Add(label2);
-            EdicionText.Controls.Add(TipoCombo);
-            EdicionText.Controls.Add(label5);
-            EdicionText.Controls.Add(ApellidoText);
-            EdicionText.Controls.Add(label4);
-            EdicionText.Controls.Add(NombreText);
-            EdicionText.Controls.Add(label3);
-            EdicionText.Controls.Add(DocumentoText);
-            EdicionText.Controls.Add(label1);
-            EdicionText.Location = new Point(23, 206);
-            EdicionText.Name = "EdicionText";
-            EdicionText.Size = new Size(717, 193);
-            EdicionText.TabIndex = 4;
-            EdicionText.TabStop = false;
-            EdicionText.Text = "EdicionGroup";
+            EdicionGroup.Controls.Add(NumeroText);
+            EdicionGroup.Controls.Add(label7);
+            EdicionGroup.Controls.Add(CodAreaText);
+            EdicionGroup.Controls.Add(label6);
+            EdicionGroup.Controls.Add(CodPais);
+            EdicionGroup.Controls.Add(label2);
+            EdicionGroup.Controls.Add(TipoCombo);
+            EdicionGroup.Controls.Add(label5);
+            EdicionGroup.Controls.Add(ApellidoText);
+            EdicionGroup.Controls.Add(label4);
+            EdicionGroup.Controls.Add(NombreText);
+            EdicionGroup.Controls.Add(label3);
+            EdicionGroup.Controls.Add(DocumentoText);
+            EdicionGroup.Controls.Add(label1);
+            EdicionGroup.Location = new Point(23, 206);
+            EdicionGroup.Name = "EdicionGroup";
+            EdicionGroup.Size = new Size(717, 193);
+            EdicionGroup.TabIndex = 4;
+            EdicionGroup.TabStop = false;
+            EdicionGroup.Text = "EdicionGroup";
             // 
             // NumeroText
             // 
@@ -153,12 +156,12 @@
             label7.TabIndex = 13;
             label7.Text = "Numero";
             // 
-            // PaisText
+            // CodAreaText
             // 
-            PaisText.Location = new Point(340, 125);
-            PaisText.Name = "PaisText";
-            PaisText.Size = new Size(125, 27);
-            PaisText.TabIndex = 12;
+            CodAreaText.Location = new Point(340, 125);
+            CodAreaText.Name = "CodAreaText";
+            CodAreaText.Size = new Size(125, 27);
+            CodAreaText.TabIndex = 12;
             // 
             // label6
             // 
@@ -169,12 +172,13 @@
             label6.TabIndex = 11;
             label6.Text = "Codigo Area";
             // 
-            // CodPaisText
+            // CodPais
             // 
-            CodPaisText.Location = new Point(194, 126);
-            CodPaisText.Name = "CodPaisText";
-            CodPaisText.Size = new Size(125, 27);
-            CodPaisText.TabIndex = 10;
+            CodPais.Location = new Point(194, 126);
+            CodPais.Name = "CodPais";
+            CodPais.Size = new Size(125, 27);
+            CodPais.TabIndex = 10;
+            CodPais.TextChanged += CodPais_TextChanged;
             // 
             // label2
             // 
@@ -192,6 +196,7 @@
             TipoCombo.Name = "TipoCombo";
             TipoCombo.Size = new Size(151, 28);
             TipoCombo.TabIndex = 8;
+            TipoCombo.SelectedIndexChanged += TipoCombo_SelectedIndexChanged;
             // 
             // label5
             // 
@@ -258,6 +263,7 @@
             AceptarBoton.TabIndex = 6;
             AceptarBoton.Text = "Aceptar";
             AceptarBoton.UseVisualStyleBackColor = true;
+            AceptarBoton.Click += AceptarBoton_Click;
             // 
             // CancelarBoton
             // 
@@ -267,7 +273,7 @@
             CancelarBoton.TabIndex = 5;
             CancelarBoton.Text = "Cancelar";
             CancelarBoton.UseVisualStyleBackColor = true;
-            CancelarBoton.Click += this.CancelarBoton_Click_1;
+            CancelarBoton.Click += CancelarBoton_Click;
             // 
             // PersonasForm
             // 
@@ -276,22 +282,22 @@
             ClientSize = new Size(800, 560);
             Controls.Add(AceptarBoton);
             Controls.Add(CancelarBoton);
-            Controls.Add(EdicionText);
+            Controls.Add(EdicionGroup);
             Controls.Add(NuevoBoton);
             Controls.Add(EditarBoton);
             Controls.Add(EliminarBoton);
-            Controls.Add(PersonasList);
+            Controls.Add(Lista);
             Name = "PersonasForm";
             Text = "-";
             Load += Form1_Load;
-            EdicionText.ResumeLayout(false);
-            EdicionText.PerformLayout();
+            EdicionGroup.ResumeLayout(false);
+            EdicionGroup.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private ListView PersonasList;
+        private ListView Lista;
         private ColumnHeader DocumentoCol;
         private ColumnHeader NombreCol;
         private ColumnHeader ApellidoCol;
@@ -299,13 +305,13 @@
         private Button EliminarBoton;
         private Button EditarBoton;
         private Button NuevoBoton;
-        private GroupBox EdicionText;
+        private GroupBox EdicionGroup;
         private Label label1;
         private TextBox NumeroText;
         private Label label7;
-        private TextBox PaisText;
+        private TextBox CodAreaText;
         private Label label6;
-        private TextBox CodPaisText;
+        private TextBox CodPais;
         private Label label2;
         private ComboBox TipoCombo;
         private Label label5;

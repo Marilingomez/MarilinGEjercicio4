@@ -13,5 +13,13 @@ namespace MarilinGEjercicio4
         public string Apellido { get; set;}
         public Telefono Telefono { get; set;}
 
+        public ActualizarCon(Persona datos)
+        {
+            Documento = datos.Documento;
+            Nombre=datos.Nombre;
+            Apellido=datos.Apellido;
+            Telefono.ActualizarCon(datos.Telefono);
+        }
+
     }
 }
